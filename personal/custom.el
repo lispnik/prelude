@@ -1,5 +1,22 @@
 (beacon-mode -1)
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package restclient
+  :ensure t
+  :config
+  (use-package restclient-test :ensure t)
+  (use-package company-restclient :ensure t))
+
+(use-package clj-refactor
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook
+            '(lambda ()
+               (clj-refactor-mode 1)
+               (yas-minor-mode 1))))
+
 (when (eq window-system 'ns)
   (setq mac-command-modifier 'meta
         mac-option-modifier 'super))
@@ -38,7 +55,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (markdown-mode yaml-mode web-mode geiser cargo flycheck-rust racer rust-mode json-mode js2-mode rainbow-mode elisp-slime-nav slime cider clojure-mode rainbow-delimiters company counsel swiper ivy vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (clj-refactor company-restclient restclient-test restclient use-package "use-package" "restclient" "restmode" "rest-mode" markdown-mode yaml-mode web-mode geiser cargo flycheck-rust racer rust-mode json-mode js2-mode rainbow-mode elisp-slime-nav slime cider clojure-mode rainbow-delimiters company counsel swiper ivy vkill exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
